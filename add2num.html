@@ -1,0 +1,152 @@
+ <!DOCTYPE html>
+ <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger Menu</title>
+    <style>
+        /* Style the menu container */
+        .menu-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        /* Hide the menu by default */
+        .menu {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            margin-left: 20px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        /* Burger menu icon */
+        .burger-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+        }
+
+        .burger-icon div {
+            background-color: white;
+            height: 4px;
+            width: 100%;
+        }
+
+        /* Show burger icon on small screens */
+        @media screen and (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .burger-icon {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-bar">
+        <!-- Burger icon (3 horizontal lines) -->
+        <div class="burger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Menu items -->
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="IncomeTax.html">Income Tax</a></li>
+            <li><a href="FnC.html">F & C Converter</a></li>
+            <li><a href="add2num.html">Add 2 Numbers</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Toggle the menu visibility on small screens
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
+
+<html>
+<body style="background-color: lightblue;">
+
+<h1>Add two numbers</h1>
+
+<p>
+<label for="n1">First Number</label> 
+<input id="n1" name="n1" type="number" onkeyup="computesum()">
+<label for="n2">Second Number</label> 
+<input id="n2" name="n2" type="number" onkeyup="computesum()">
+<button onclick="clearvalues()">Clear Values</button>
+
+</p>
+   
+<label for="sum" id="sumlabel">The sum is:</label>  
+<input id="sum" name="sum" type="number" readonly></input></p>
+
+ <br> 
+ 
+<script>
+function computesum()
+{
+  var x,y;
+
+  // Retrieve the user input 
+  x = document.getElementById("n1").value*1;  // *1 Converts the result to number
+  y = document.getElementById("n2").value*1;  // to avoid having to use parseFloat
+
+  // Compute the sum
+  let z  = x+y;
+
+  // Display the result
+
+    document.getElementById("sumlabel").innerHTML='The sum of '
+       +x+' and '+y+' is:';
+    document.getElementById("sum").value=z;
+}
+
+function clearvalues()
+{
+   var x,y;
+
+  // Retrieve the user input 
+  document.getElementById("n1").value='';
+  document.getElementById("n2").value='';
+  document.getElementById("sumlabel").innerHTML='The sum is:'
+  document.getElementById("sum").value='';
+ 
+}
+   
+</script>
+</body>
+</html>
