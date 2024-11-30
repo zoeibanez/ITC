@@ -5,34 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Menu Bar</title>
     <style>
-        /* Style the menu container */
-        ul.menu {
-            list-style-type: none; /* Removes bullet points */
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar Styles */
+        nav {
             background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradient from purple to a lighter purple */
-            text-align: center; /* Centers the menu items */
+            padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds shadow to navbar */
+            text-align: center;
         }
 
-        /* Style each menu item */
-        ul.menu li {
-            display: inline-block; /* Displays the items in a row */
-        }
-
-        /* Style the links inside the menu items */
-        ul.menu li a {
-            display: block;
-            padding: 14px 20px;
-            text-decoration: none;
+        nav a {
             color: white;
-            background-color: #6a1b9a;
+            text-decoration: none;
             font-size: 18px;
+            margin: 0 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Change color when hovering over menu items */
-        ul.menu li a:hover {
+        nav a:hover {
             background-color: #9c4dcc; /* Lighter shade on hover */
             transform: scale(1.05); /* Slight zoom effect */
         }
@@ -41,40 +38,42 @@
             outline: none;
         }
 
-        /* Page content */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: lightblue;
-            margin: 0;
-            padding: 0;
-        }
-
-        center {
+        /* Container Styles */
+        .container {
             text-align: center;
-            padding: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            width: 300px;
+            margin: 20px auto;
         }
 
-        h1 {
-            font-size: 36px;
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
 
         p {
-            font-size: 20px;
+            font-size: 18px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="conversion.html">Conversion</a></li>
-        <li><a href="IncomeTax.html">Income Tax</a></li>
-        <li><a href="FnC.html">F & C Converter</a></li>
-        <li><a href="add2num.html">Add 2 Numbers</a></li>
-        <li><a href="about.html">About</a></li>
-    </ul>
-
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="conversion.html">Conversion</a>
+        <a href="add2num.html">Adding</a>
+        <a href=ÏncomeTax.html">Income Tax</a>
+    </nav>
+    
     <!-- Page Content -->
     <center>
         <h1>Home</h1><br>
