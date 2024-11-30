@@ -15,24 +15,19 @@
         <a href="incomeTax.html">Income Tax</a>
     </nav>
 
-</body>
-</html>
+    <center>
+        <h1>Income Tax Calculator</h1><br>
 
+        <!-- Taxable Income Input -->
+        <label>Taxable Income:</label>
+        <input type="number" id="ti" oninput="computeTax()"><br><br>
 
-<center>
+        <!-- Tax Payable Output -->
+        <label>Tax Payable:</label>
+        <input type="number" id="totaltax" readonly>
+    </center>
 
-	<h1>Income Tax Calculator</h1><br>
-
-</center>
-</body>
-<center>
-	<label> Taxable Income:</label>
-	<input type= "number" id="ti">
-    <button onclick="computeTax()"> Compute </button> <br>
-	<br>
-	<label> Taxt Payable:</label>
-	<input type= "number" id="totaltax" readonly>
-</center>
-	<script src="incomeTax.js"></script>
+    <script src="incomeTax.js"></script>
         
+</body>
 </html>
