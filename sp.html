@@ -8,18 +8,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <center>
-  <div>
-  <nav>
+    <!-- Navbar -->
+    <nav>
         <a href="index.html">Home</a>
         <a href="conversion.html">Conversion</a>
         <a href="incomeTax.html">Income Tax</a>
         <a href="fsa.html">Factorial, Sum, Avg</a>
         <a href="sp.html">Simple Payroll</a>
     </nav>
-  </div>
-  <center>
-
+<br><br>
     <div class="container">
         <h1>Employee Payroll System</h1>
 
@@ -29,22 +26,18 @@
                 <label for="employeeName">Employee Name</label>
                 <input type="text" id="employeeName" placeholder="Enter employee name">
             </div>
-
             <div class="input-group">
                 <label for="daysWorked">Days Worked</label>
                 <input type="number" id="daysWorked" placeholder="Enter number of days worked">
             </div>
-
             <div class="input-group">
                 <label for="dailyRate">Daily Rate</label>
                 <input type="number" id="dailyRate" placeholder="Enter daily rate">
             </div>
-
             <div class="input-group">
                 <label for="deductionAmount">Deduction Amount</label>
                 <input type="number" id="deductionAmount" placeholder="Enter deduction amount">
             </div>
-
             <div class="button-group">
                 <button onclick="addEmployee()">Add Employee</button>
             </div>
@@ -70,22 +63,20 @@
                 </tbody>
             </table>
         </div>
-
+<br><br>
         <!-- Form to Delete Employee -->
         <div class="form-container">
             <div class="input-group">
                 <label for="lineNumber">Line Number to Delete</label>
                 <input type="number" id="lineNumber" placeholder="Enter line number to delete">
             </div>
-
             <div class="button-group">
                 <button onclick="deleteEmployee()">Delete Employee</button>
                 <button class="delete-all-btn" onclick="deleteAllEmployees()">Delete All Employees</button>
             </div>
         </div>
     </div>
-
+<br><br>
     <script src="sp.js"></script>
-
 </body>
 </html>
