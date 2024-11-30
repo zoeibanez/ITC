@@ -10,13 +10,27 @@ function computeTax() {
     }
 
     // Logic for calculating the tax based on income (example)
-    let tax = 0;
-    if (taxableIncome <= 50000) {
-        tax = taxableIncome * 0.05; // 5% tax for income up to 50,000
-    } else if (taxableIncome <= 100000) {
-        tax = 50000 * 0.05 + (taxableIncome - 50000) * 0.1; // 10% tax for income between 50,001 and 100,000
+   let tax = 0;
+
+    // Determine the tax based on the income brackets
+    if (taxableIncome <= 250000) {
+        // No tax for incomes up to 250,000
+        tax = 0;
+    } else if (taxableIncome <= 400000) {
+        // 20% on the excess over 250,000
+        tax = (taxableIncome - 250000) * 0.20;
+    } else if (taxableIncome <= 800000) {
+        // 30,000 + 25% on the excess over 400,000
+        tax = 30000 + (taxableIncome - 400000) * 0.25;
+    } else if (taxableIncome <= 2000000) {
+        // 130,000 + 30% on the excess over 800,000
+        tax = 130000 + (taxableIncome - 800000) * 0.30;
+    } else if (taxableIncome <= 8000000) {
+        // 490,000 + 32% on the excess over 2,000,000
+        tax = 490000 + (taxableIncome - 2000000) * 0.32;
     } else {
-        tax = 50000 * 0.05 + 50000 * 0.1 + (taxableIncome - 100000) * 0.2; // 20% tax for income above 100,000
+        // 2,410,000 + 35% on the excess over 8,000,000
+        tax = 2410000 + (taxableIncome - 8000000) * 0.35;
     }
 
     // Set the computed tax to the output field
