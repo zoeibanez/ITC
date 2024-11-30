@@ -10,8 +10,9 @@
             list-style-type: none; /* Removes bullet points */
             margin: 0;
             padding: 0;
-            background-color: #333;
+            background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradient from purple to a lighter purple */
             text-align: center; /* Centers the menu items */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds shadow to navbar */
         }
 
         /* Style each menu item */
@@ -25,38 +26,60 @@
             padding: 14px 20px;
             text-decoration: none;
             color: white;
-            background-color: #333;
+            background-color: #6a1b9a;
             font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         /* Change color when hovering over menu items */
         ul.menu li a:hover {
-            background-color: #575757;
+            background-color: #9c4dcc; /* Lighter shade on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        nav a:focus {
+            outline: none;
+        }
+
+        /* Page content */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            margin: 0;
+            padding: 0;
+        }
+
+        center {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Menu bar -->
+    <!-- Navbar -->
     <ul class="menu">
         <li><a href="index.html">Home</a></li>
-	<li><a href="conversion.html">Conversion</a></li>
+        <li><a href="conversion.html">Conversion</a></li>
         <li><a href="IncomeTax.html">Income Tax</a></li>
         <li><a href="FnC.html">F & C Converter</a></li>
         <li><a href="add2num.html">Add 2 Numbers</a></li>
         <li><a href="about.html">About</a></li>
     </ul>
 
-</body>
-</html>
+    <!-- Page Content -->
+    <center>
+        <h1>Home</h1><br>
+        <p>This Webpage is just a test because I am bored</p>
+    </center>
 
-<html>
-<body style="background-color: lightblue;">
-<center>
-
-	<h1>Home</h1><br>
-    <body> This Webpage is just a test because I am bored</body>
-
-</center>
 </body>
 </html>
