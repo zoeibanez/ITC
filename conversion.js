@@ -1,4 +1,4 @@
-       function convert() {
+function convert() {
             let inputValue = document.getElementById('inputValue').value;
             let conversionType = document.getElementById('conversionType').value;
             let resultText = '';
@@ -27,3 +27,7 @@
 
             document.getElementById('result').innerText = resultText;
         }
+
+        // Automatically call the function to update the result as soon as the page is loaded
+        document.getElementById('inputValue').addEventListener('input', convert);
+        document.getElementById('conversionType').addEventListener('change', convert);
