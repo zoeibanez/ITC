@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Menu Bar</title>
-    
-        <link rel="stylesheet" href="style.css">
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-    <div class="burger" onclick="toggleMenu()">
+  <nav>
+    <div class="nav-container">
+      <div class="logo">MyWebsite</div>
+      <div class="menu-toggle" id="menuToggle">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="conversion.html">Conversion</a></li>
+        <li><a href="incomeTax.html">Income Tax</a></li>
+        <li><a href="fsa.html">Factorial, Sum, Avg</a></li>
+        <li><a href="sp.html">Simple Payroll</a></li>
+      </ul>
     </div>
-    <a href="index.html">Home</a>
-    <a href="conversion.html">Conversion</a>
-    <a href="incomeTax.html">Income Tax</a>
-    <a href="fsa.html">Factorial, Sum, Avg</a>
-    <a href="sp.html">Simple Payroll</a>
-</nav>
-    <!-- Page Content -->
-    <center>
-        <h1>Home</h1><br>
-        <p>This Webpage is just a test because I am bored</p>
-    </center>
-<script src="index.js"></script>
+  </nav>
+  <main>
+    <div class="hero">
+      <h1>Welcome to Zoe's Webpage</h1>
+      <p>This webpage consists all my assignment in ITC.</p>
+    </div>
+  </main>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
