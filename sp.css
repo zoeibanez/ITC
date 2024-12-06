@@ -1,36 +1,58 @@
- body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f9;
+/* Basic Styles */
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      background-color: #f9f9f9;
     }
 
+    /* Navbar Styles */
+    nav {
+      background: linear-gradient(to right, #6a1b9a, #8e24aa); /* Gradient from purple to a lighter purple */
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds shadow to navbar */
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      margin: 0 20px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #9c4dcc; /* Lighter shade on hover */
+      transform: scale(1.05); /* Slight zoom effect */
+    }
+
+    nav a:focus {
+      outline: none;
+    }
+
+    /* Main container for Payroll System */
     .container {
-      width: 80%;
+      width: 90%;
+      max-width: 1200px; /* Keeps the container size manageable on larger screens */
       margin: 30px auto;
       padding: 20px;
-      background-color: #ffffff;
+      background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     h2 {
-      text-align: center;
       color: #333;
     }
 
-    .table-container {
-      overflow-y: auto;
-      max-height: 300px;
-      margin-bottom: 20px;
-    }
-
+    /* Table Styles */
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      border-radius: 8px;
-      overflow: hidden;
+      margin-top: 20px;
     }
 
     table th, table td {
@@ -40,71 +62,121 @@
     }
 
     table th {
-      background-color: #4CAF50;
+      background-color: #575799;
       color: white;
     }
 
-    .ndata {
-      text-align: right;
-    }
-
+    /* Form input and button container */
     .form-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
+      justify-content: center;
       margin-bottom: 20px;
     }
 
-    .form-container input {
+    .form-container input, .form-container button {
       padding: 8px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      width: 150px;
     }
 
     .form-container button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      background-color: #575799; /* Bright red color to signify delete */
+	  color: white; 
+	padding: 10px 20px; 
+	border: none; /* Remove the border */
+	border-radius: 5px; /* Rounded corners */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+	cursor: pointer; /* Pointer cursor to indicate it's clickable */
+	transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
     }
 
     .form-container button:hover {
-      background-color: #45a049;
+      background-color: #4e4e89; /* Darker red on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
     }
+	
+	button.add-employee:active {
+  transform: scale(0.98); /* Slight "pressed" effect when clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+}
 
     button.delete {
-      background-color: #f44336;
-    }
+  background-color: #575799; /* Bright red color to signify delete */
+  color: white; 
+  padding: 10px 20px; 
+  border: none; /* Remove the border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  cursor: pointer; /* Pointer cursor to indicate it's clickable */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
 
-    button.delete:hover {
-      background-color: #e53935;
-    }
+button.delete:hover {
+  background-color: #4e4e89; /* Darker red on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
 
-    button.delete-all {
-      background-color: #ff9800;
-    }
+button.delete:active {
+  transform: scale(0.98); /* Slight "pressed" effect when clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+}
 
-    button.delete-all:hover {
-      background-color: #fb8c00;
-    }
-
-    dialog {
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #f7f7f7;
-      width: 300px;
+    .delete-section {
+      margin-top: 20px;
       text-align: center;
     }
 
-    .dlgbuttons {
+    .delete-section input {
+      width: 150px;
+    }
+
+    /* Dialog styling */
+    dialog {
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .dialog-buttons {
       display: flex;
       justify-content: space-evenly;
     }
 
-    .dlgbuttons button {
-      margin-top: 10px;
+    .dialog-buttons button {
+      padding: 8px 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .dialog-buttons button.confirm {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .dialog-buttons button.cancel {
+      background-color: #f44336;
+      color: white;
+    }
+
+    /* Responsive Table */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+    }
+
+    @media (max-width: 768px) {
+      table th, table td {
+        padding: 8px;
+      }
+
+      .form-container input, .form-container button {
+        width: 100%; /* Make input fields and buttons span the full width on smaller screens */
+      }
     }
