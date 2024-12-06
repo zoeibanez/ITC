@@ -113,3 +113,8 @@ let payroll = [];
   document.getElementById("btnCancelDeleteAll").addEventListener("click", () => {
     document.getElementById("deleteAllConfirmationDialog").close();
   });
+// Toggle the menu visibility when burger icon is clicked
+function toggleMenu() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
+}
