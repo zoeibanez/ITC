@@ -31,8 +31,3 @@ function convert() {
         // Automatically call the function to update the result as soon as the page is loaded
         document.getElementById('inputValue').addEventListener('input', convert);
         document.getElementById('conversionType').addEventListener('change', convert);
-// Toggle the menu visibility when burger icon is clicked
-function toggleMenu() {
-    const nav = document.querySelector('nav');
-    nav.classList.toggle('active');
-}
