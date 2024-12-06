@@ -27,8 +27,3 @@ function calculate() {
             var average = n > 0 ? (total / n).toFixed(2) : 0; // Prevent division by 0
             document.getElementById('averageResult').textContent = average;
         }
-// Toggle the menu visibility when burger icon is clicked
-function toggleMenu() {
-    const nav = document.querySelector('nav');
-    nav.classList.toggle('active');
-}
