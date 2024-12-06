@@ -1,75 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factorial, Sum, and Average Calculator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav>
-        <div class="burger" id="menuToggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <div id="navLinks">
-            <a href="index.html">Home</a>
-            <a href="conversion.html">Conversion</a>
-            <a href="incomeTax.html">Income Tax</a>
-            <a href="fsa.html">Factorial, Sum, Avg</a>
-            <a href="sp.html">Simple Payroll</a>
-        </div>
-    </nav>
+// Income Tax Computation Function
+        function computeTax() {
+            // Get the taxable income from the input field
+            var taxableIncome = document.getElementById('ti').value;
 
-    <!-- Factorial, Sum, and Average Calculator -->
-    <center>
-        <h1>Factorial, Sum, and Average Calculator</h1>
-
-        <div>
-            <label for="number">Enter a number (N):</label>
-            <input type="number" id="number" oninput="calculate()">
-        </div>
-
-        <div>
-            <h3>Results:</h3>
-            <p><strong>Factorial:</strong> <span id="factorialResult" class="result"></span></p>
-            <p><strong>Sum:</strong> <span id="sumResult" class="result"></span></p>
-            <p><strong>Average:</strong> <span id="averageResult" class="result"></span></p>
-        </div>
-    </center>
-
-    <script>
-        // Factorial, Sum, and Average Calculation
-        function calculate() {
-            var n = document.getElementById('number').value;
-
-            // Factorial using While Loop
-            var factorial = 1;
-            var i = 1;
-            while (i <= n) {
-                factorial *= i;
-                i++;
+            // Ensure the input is a number and greater than 0
+            taxableIncome = parseFloat(taxableIncome);
+            if (isNaN(taxableIncome) || taxableIncome < 0) {
+                document.getElementById('totaltax').value = '';
+                return;
             }
-            document.getElementById('factorialResult').textContent = factorial;
 
-            // Sum using Do While Loop
-            var sum = 0;
-            var j = 1;
-            do {
-                sum += j;
-                j++;
-            } while (j <= n);
-            document.getElementById('sumResult').textContent = sum;
+            // Logic for calculating the tax based on income (example)
+            let tax = 0;
 
-            // Average using For Loop
-            var total = 0;
-            for (var k = 1; k <= n; k++) {
-                total += k;
+            // Determine the tax based on the income brackets
+            if (taxableIncome <= 250000) {
+                // No tax for incomes up to 250,000
+                tax = 0;
+            } else if (taxableIncome <= 400000) {
+                // 20% on the excess over 250,000
+                tax = (taxableIncome - 250000) * 0.20;
+            } else if (taxableIncome <= 800000) {
+                // 30,000 + 25% on the excess over 400,000
+                tax = 30000 + (taxableIncome - 400000) * 0.25;
+            } else if (taxableIncome <= 2000000) {
+                // 130,000 + 30% on the excess over 800,000
+                tax = 130000 + (taxableIncome - 800000) * 0.30;
+            } else if (taxableIncome <= 8000000) {
+                // 490,000 + 32% on the excess over 2,000,000
+                tax = 490000 + (taxableIncome - 2000000) * 0.32;
+            } else {
+                // 2,410,000 + 35% on the excess over 8,000,000
+                tax = 2410000 + (taxableIncome - 8000000) * 0.35;
             }
-            var average = n > 0 ? (total / n).toFixed(2) : 0; // Prevent division by 0
-            document.getElementById('averageResult').textContent = average;
+
+            // Set the computed tax to the output field
+            document.getElementById('totaltax').value = tax.toFixed(2); // Rounded to 2 decimal places
         }
 
         // Menu toggle functionality for burger icon
@@ -79,6 +45,3 @@
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-    </script>
-</body>
-</html>
