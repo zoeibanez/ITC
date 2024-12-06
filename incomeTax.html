@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature & Distance Converter</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Income Tax Calculator</title>
+    <link rel="stylesheet" href="pow.css">
 </head>
 <body>
-     <!-- Navbar -->
+    <!-- Navbar -->
     <nav>
     <div class="nav-container">
       <div class="logo">Zoe Ibañez</div>
@@ -25,22 +25,22 @@
       </ul>
     </div>
   </nav>
-<br><br>
+  <br><br>
     <center>
         <div class="container">
         <h1>Income Tax Calculator</h1><br>
 
         <!-- Taxable Income Input -->
-        <label>Taxable Income:</label>
+        <label for="ti">Taxable Income:</label>
         <input type="number" id="ti" oninput="computeTax()"><br><br>
 
         <!-- Tax Payable Output -->
-        <label>Tax Payable:</label>
+        <label for="totaltax">Tax Payable:</label>
         <input type="number" id="totaltax" readonly>
         </div>
     </center>
 
-    <script src="incomeTax.js"></script>
+    <script src="pow.js"></script>
         
 </body>
 </html>
