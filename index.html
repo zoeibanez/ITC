@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Homepage</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <div class="burger" onclick="toggleMenu()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <a href="index.html">Home</a>
-        <a href="conversion.html">Conversion</a>
-        <a href="incomeTax.html">Income Tax</a>
-        <a href="fsa.html">Factorial, Sum, Avg</a>
-        <a href="sp.html">Simple Payroll</a>
-    </nav>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">MyWebsite</div>
+      <div class="menu-toggle" id="menuToggle">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <h1>Welcome to MyWebsite</h1>
+      <p>Your gateway to awesome content.</p>
+    </div>
+  </main>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
-    <center>
-        <h1>Welcome to Our Website</h1>
-        <p>This is a place where you can perform various calculations and conversions.</p>
-
-        <div>
-            <h3>Choose a tool to get started:</h3>
-            <ul>
-                <li><a href="conversion.html">Temperature & Distance Converter</a></li>
-                <li><a href="incomeTax.html">Income Tax Calculator</a></li>
-                <li><a href="fsa.html">Factorial, Sum, and Average Calculator</a></li>
-                <li><a href="sp.html">Simple Payroll Calculator</a></li>
-            </ul>
-        </div>
-    </center>
-
-    <script src="#"></script>
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
