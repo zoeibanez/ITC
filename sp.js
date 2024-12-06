@@ -1,11 +1,16 @@
-var payroll = [];
+let payroll = [];
 
-  // Function to add an employee
+  // Function to calculate Gross Pay and Net Pay
+  function calculatePay(daysWorked, dailyRate, deduction) {
+    let grossPay = daysWorked * dailyRate;
+    let netPay = grossPay - deduction;
+    return { grossPay, netPay };
+  }
+
+  // Function to add an employee to the payroll list
   function addEmployee(name, daysWorked, dailyRate, deduction) {
-    let grossPay = (daysWorked * dailyRate).toFixed(2);
-    let netPay = (grossPay - deduction).toFixed(2);
-
-    let newEmployee = {
+    let { grossPay, netPay } = calculatePay(daysWorked, dailyRate, deduction);
+    let employee = {
       name: name,
       daysWorked: daysWorked,
       dailyRate: dailyRate,
@@ -13,101 +18,98 @@ var payroll = [];
       deduction: deduction,
       netPay: netPay
     };
-
-    payroll.push(newEmployee);
-    showEmployees();
+    payroll.push(employee);
+    displayPayroll();
   }
 
-  // Function to display employees
-  function showEmployees() {
-    let tb = "", trec = "", tgpay = 0.00, tded = 0.00, tnetpay = 0.00;
-    let lno = 1;
-    for (emp of payroll) {
-      trec = `<tr>
-        <td class="ndata">${lno}</td>
+  // Function to display the payroll table
+  function displayPayroll() {
+    let tableBody = document.getElementById("payrollBody");
+    tableBody.innerHTML = ''; // Clear the table before displaying new data
+
+    payroll.forEach((emp, index) => {
+      let row = `<tr>
+        <td>${index + 1}</td>
         <td>${emp.name}</td>
-        <td class="ndata">${emp.daysWorked.toFixed(2)}</td>
-        <td class="ndata">${emp.dailyRate.toFixed(2)}</td>
-        <td class="ndata">${emp.grossPay}</td>
-        <td class="ndata">${emp.deduction.toFixed(2)}</td>
-        <td class="ndata">${emp.netPay}</td>
+        <td>${emp.daysWorked}</td>
+        <td>${emp.dailyRate}</td>
+        <td>${emp.grossPay.toFixed(2)}</td>
+        <td>${emp.deduction.toFixed(2)}</td>
+        <td>${emp.netPay.toFixed(2)}</td>
       </tr>`;
-      tb += trec;
-      tgpay += parseFloat(emp.grossPay);
-      ++lno;
-    }
-    document.getElementById("tablebody").innerHTML = tb;
-    document.getElementById("tGrossPay").innerHTML = tgpay.toFixed(2);
-    document.getElementById("tDeduction").innerHTML = tded.toFixed(2);
-    document.getElementById("tNetPay").innerHTML = tnetpay.toFixed(2);
+      tableBody.innerHTML += row;
+    });
   }
 
-  // Event Listeners and Dialog Logic
-  document.addEventListener("DOMContentLoaded", () => {
-    showEmployees();
+  // Function to delete an employee from the payroll
+  function deleteEmployee(lineNumber) {
+    if (lineNumber > 0 && lineNumber <= payroll.length) {
+      payroll.splice(lineNumber - 1, 1); // Remove the employee from the array
+      displayPayroll();
+    } else {
+      alert("Invalid Line Number. Please try again.");
+    }
+  }
 
-    let dlgConfirmCancel = document.getElementById("dlgConfirmCancel");
+  // Function to delete all employees from the payroll
+  function deleteAllEmployees() {
+    payroll = [];
+    displayPayroll();
+  }
 
-    // Add new employee
-    document.getElementById("btnAddEmployee").addEventListener("click", () => {
-      let name = document.getElementById("empName").value.trim();
-      let daysWorked = parseFloat(document.getElementById("empDays").value);
-      let dailyRate = parseFloat(document.getElementById("empRate").value);
-      let deduction = parseFloat(document.getElementById("empDeduction").value);
+  // Event Listener for Adding Employee
+  document.getElementById("btnAddEmployee").addEventListener("click", () => {
+    let empName = document.getElementById("empName").value;
+    let empDays = parseInt(document.getElementById("empDays").value);
+    let empRate = parseFloat(document.getElementById("empRate").value);
+    let empDeduction = parseFloat(document.getElementById("empDeduction").value);
 
-      // Validation check
-      if (name && !isNaN(daysWorked) && !isNaN(dailyRate) && !isNaN(deduction)) {
-        addEmployee(name, daysWorked, dailyRate, deduction);
-        
-        // Clear input fields after submission
-        document.getElementById("empName").value = '';
-        document.getElementById("empDays").value = '';
-        document.getElementById("empRate").value = '';
-        document.getElementById("empDeduction").value = '';
-      } else {
-        alert("Please fill all fields correctly.");
-      }
-    });
+    if (empName && empDays && empRate && empDeduction) {
+      addEmployee(empName, empDays, empRate, empDeduction);
+      document.getElementById("empName").value = '';
+      document.getElementById("empDays").value = '';
+      document.getElementById("empRate").value = '';
+      document.getElementById("empDeduction").value = '';
+    } else {
+      alert("Please fill out all fields with valid information.");
+    }
+  });
 
-    // Delete specific employee
-    document.getElementById("btndelete").addEventListener("click", () => {
-      let x = document.getElementById("delemployee").value * 1 - 1;
-      if (x >= 0 && x < payroll.length) {
-        document.getElementById("dlgmsg").innerHTML = `Delete the employee ${x + 1}: ${payroll[x].name}?`;
-        dlgConfirmCancel.showModal();
-      }
-    });
+  // Event Listener for Deleting Employee
+  document.getElementById("btnDeleteEmployee").addEventListener("click", () => {
+    let lineNumber = parseInt(document.getElementById("empToDelete").value);
+    if (lineNumber > 0 && lineNumber <= payroll.length) {
+      document.getElementById("deleteConfirmationMessage").textContent = `Are you sure you want to delete employee ${lineNumber}?`;
+      document.getElementById("deleteConfirmationDialog").showModal();
+    } else {
+      alert("Invalid Line Number. Please try again.");
+    }
+  });
 
-    // Delete all employees
-    document.getElementById("btndeleteall").addEventListener("click", () => {
-      document.getElementById("dlgmsg").innerHTML = "Delete all records?";
-      dlgConfirmCancel.showModal();
-    });
+  // Event Listener for Confirm Delete Employee
+  document.getElementById("btnConfirmDelete").addEventListener("click", () => {
+    let lineNumber = parseInt(document.getElementById("empToDelete").value);
+    deleteEmployee(lineNumber);
+    document.getElementById("deleteConfirmationDialog").close();
+  });
 
-    dlgConfirmCancel.addEventListener("close", (e) => {
-      let rst = e.target.returnValue;
-      if (rst === "confirm") {
-        let dlgmsg = document.getElementById("dlgmsg").innerHTML;
-        if (dlgmsg === "Delete all records?") {
-          let dlgAreYouSure = document.getElementById("dlgAreYouSure");
-          document.getElementById("dlgmsg2").innerHTML = "Are you sure?";
-          dlgAreYouSure.showModal();
-        } else {
-          let x = document.getElementById("delemployee").value * 1 - 1;
-          payroll.splice(x, 1);
-          showEmployees();
-          document.getElementById("delemployee").value = '';
-        }
-      }
-    });
+  // Event Listener for Cancel Delete Employee
+  document.getElementById("btnCancelDelete").addEventListener("click", () => {
+    document.getElementById("deleteConfirmationDialog").close();
+  });
 
-    // Confirm deletion of all employees
-    let dlgAreYouSure = document.getElementById("dlgAreYouSure");
-    dlgAreYouSure.addEventListener("close", (e) => {
-      let rst = e.target.returnValue;
-      if (rst === "yes") {
-        payroll = [];
-        showEmployees();
-      }
-    });
+  // Event Listener for Delete All Employees
+  document.getElementById("btnDeleteAllEmployees").addEventListener("click", () => {
+    document.getElementById("deleteAllConfirmationDialog").showModal();
+  });
+
+  // Event Listener for Confirm Delete All Employees
+  document.getElementById("btnConfirmDeleteAll").addEventListener("click", () => {
+    deleteAllEmployees();
+    document.getElementById("deleteAllConfirmationDialog").close();
+  });
+
+  // Event Listener for Cancel Delete All Employees
+  document.getElementById("btnCancelDeleteAll").addEventListener("click", () => {
+    document.getElementById("deleteAllConfirmationDialog").close();
   });
