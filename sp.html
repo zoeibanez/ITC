@@ -5,82 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payroll Management</title>
   <link rel="stylesheet" href="sp.css">
- 
 </head>
 <body>
 
+<!-- Navbar -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="conversion.html">Conversion</a>
+    <a href="incomeTax.html">Income Tax</a>
+    <a href="fsa.html">Factorial, Sum, Avg</a>
+    <a href="sp.html">Simple Payroll</a>
+</nav>
+
+<!-- Payroll Management Content -->
 <div class="container">
-  <h2>Payroll Management</h2>
+  <h2>Simple Payroll</h2>
 
-  <!-- Table container with fixed height and scrollable body -->
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Employee No.</th>
-          <th>Employee Name</th>
-          <th>Days Worked</th>
-          <th>Daily Rate</th>
-          <th>Gross Pay</th>
-          <th>Deduction</th>
-          <th>Net Pay</th>
-        </tr>
-      </thead>
-      <tbody id="tablebody"></tbody>
-      <tfoot>
-        <tr>
-          <td colspan="4"></td>
-          <td id="tGrossPay" class="ndata">0.00</td>
-          <td id="tDeduction" class="ndata">0.00</td>
-          <td id="tNetPay" class="ndata">0.00</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-  <!-- Add Employee Form -->
+  <!-- Form for Adding Employee -->
   <div class="form-container">
     <input id="empName" type="text" placeholder="Employee Name" />
     <input id="empDays" type="number" placeholder="Days Worked" />
     <input id="empRate" type="number" placeholder="Daily Rate" />
-    <input id="empDeduction" type="number" placeholder="Deduction" />
+    <input id="empDeduction" type="number" placeholder="Deduction Amount" />
     <button id="btnAddEmployee">Add Employee</button>
   </div>
 
-  <!-- Delete Section -->
-  <div class="form-container">
-    <div>
-      <label for="delemployee">Delete Emp. No:</label>
-      <input id="delemployee" type="number" placeholder="Enter Employee No." />
-    </div>
-    <div>
-      <button id="btndelete" class="delete">Delete</button>
-      <button id="btndeleteall" class="delete-all">Delete All</button>
-    </div>
+  <!-- Table to display Payroll -->
+  <div class="table-wrapper">
+    <table id="payrollTable">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Employee Name</th>
+          <th>Days Worked</th>
+          <th>Daily Rate</th>
+          <th>Gross Pay</th>
+          <th>Deduction Amount</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+      <tbody id="payrollBody">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section for Deleting Employee -->
+  <div class="delete-section">
+    <input id="empToDelete" type="number" placeholder="Enter Line Number to Delete" />
+    <button class="delete" id="btnDeleteEmployee">Delete Employee</button>
+    <button class="delete" id="btnDeleteAllEmployees">Delete All Employees</button>
   </div>
 </div>
 
 <!-- Confirmation Dialogs -->
-<dialog id="dlgConfirmCancel">
-  <form method="dialog">
-    <h4 id="dlgmsg"></h4>
-    <div class="dlgbuttons">
-      <button id="btnConfirm" value="confirm">Confirm</button>
-      <button id="btnCancel" value="cancel">Cancel</button>
-    </div>
-  </form>
+<dialog id="deleteConfirmationDialog">
+  <h4 id="deleteConfirmationMessage"></h4>
+  <div class="dialog-buttons">
+    <button id="btnConfirmDelete" class="confirm">Confirm</button>
+    <button id="btnCancelDelete" class="cancel">Cancel</button>
+  </div>
 </dialog>
 
-<dialog id="dlgAreYouSure">
-  <form method="dialog">
-    <h4 id="dlgmsg2"></h4>
-    <div class="dlgbuttons">
-      <button id="btnYes" value="yes">Yes</button>
-      <button id="btnNo" value="no">No</button>
-    </div>
-  </form>
+<dialog id="deleteAllConfirmationDialog">
+  <h4 id="deleteAllConfirmationMessage">Are you sure you want to delete all records?</h4>
+  <div class="dialog-buttons">
+    <button id="btnConfirmDeleteAll" class="confirm">Yes</button>
+    <button id="btnCancelDeleteAll" class="cancel">No</button>
+  </div>
 </dialog>
 
 <script src="sp.js"></script>
+
 </body>
 </html>
