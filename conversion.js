@@ -1,4 +1,11 @@
-function convert() {
+ // Toggle menu function for mobile burger icon
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Conversion function
+        function convert() {
             let inputValue = document.getElementById('inputValue').value;
             let conversionType = document.getElementById('conversionType').value;
             let resultText = '';
