@@ -36,3 +36,8 @@ function computeTax() {
     // Set the computed tax to the output field
     document.getElementById('totaltax').value = tax.toFixed(2); // Rounded to 2 decimal places
 }
+// Toggle the menu visibility when burger icon is clicked
+function toggleMenu() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
+}
