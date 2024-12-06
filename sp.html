@@ -1,82 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Payroll System</title>
-    <link rel="stylesheet" href="sp.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll Management</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .table-container {
+      overflow-y: auto;
+      max-height: 300px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .ndata {
+      text-align: right;
+    }
+
+    .form-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-container input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 150px;
+    }
+
+    .form-container button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+
+    button.delete {
+      background-color: #f44336;
+    }
+
+    button.delete:hover {
+      background-color: #e53935;
+    }
+
+    button.delete-all {
+      background-color: #ff9800;
+    }
+
+    button.delete-all:hover {
+      background-color: #fb8c00;
+    }
+
+    dialog {
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f7f7f7;
+      width: 300px;
+      text-align: center;
+    }
+
+    .dlgbuttons {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .dlgbuttons button {
+      margin-top: 10px;
+    }
+
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="conversion.html">Conversion</a>
-        <a href="incomeTax.html">Income Tax</a>
-        <a href="fsa.html">Factorial, Sum, Avg</a>
-        <a href="sp.html">Simple Payroll</a>
-    </nav>
 
-    <div class="container">
-        <h1>Employee Payroll System</h1>
+<div class="container">
+  <h2>Payroll Management</h2>
 
-        <!-- Form to Add Employee -->
-        <div class="form-container">
-            <div class="input-group">
-                <label for="employeeName">Employee Name</label>
-                <input type="text" id="employeeName" placeholder="Enter employee name">
-            </div>
-            <div class="input-group">
-                <label for="daysWorked">Days Worked</label>
-                <input type="number" id="daysWorked" placeholder="Enter number of days worked">
-            </div>
-            <div class="input-group">
-                <label for="dailyRate">Daily Rate</label>
-                <input type="number" id="dailyRate" placeholder="Enter daily rate">
-            </div>
-            <div class="input-group">
-                <label for="deductionAmount">Deduction Amount</label>
-                <input type="number" id="deductionAmount" placeholder="Enter deduction amount">
-            </div>
-            <div class="button-group">
-                <button onclick="addEmployee()">Add Employee</button>
-            </div>
-        </div>
+  <!-- Table container with fixed height and scrollable body -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Employee No.</th>
+          <th>Employee Name</th>
+          <th>Days Worked</th>
+          <th>Daily Rate</th>
+          <th>Gross Pay</th>
+          <th>Deduction</th>
+          <th>Net Pay</th>
+        </tr>
+      </thead>
+      <tbody id="tablebody"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td>
+          <td id="tGrossPay" class="ndata">0.00</td>
+          <td id="tDeduction" class="ndata">0.00</td>
+          <td id="tNetPay" class="ndata">0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 
-        <!-- Table to Display Payroll -->
-        <div class="table-container">
-            <table id="payrollTable">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Employee Name</th>
-                        <th>Days Worked</th>
-                        <th>Daily Rate</th>
-                        <th>Gross Pay</th>
-                        <th>Deduction Amount</th>
-                        <th>Net Pay</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Employee data will be inserted here dynamically -->
-                </tbody>
-            </table>
-        </div>
+  <!-- Add Employee Form -->
+  <div class="form-container">
+    <input id="empName" type="text" placeholder="Employee Name" />
+    <input id="empDays" type="number" placeholder="Days Worked" />
+    <input id="empRate" type="number" placeholder="Daily Rate" />
+    <input id="empDeduction" type="number" placeholder="Deduction" />
+    <button id="btnAddEmployee">Add Employee</button>
+  </div>
 
-        <!-- Form to Delete Employee -->
-        <div class="form-container">
-            <div class="input-group">
-                <label for="lineNumber">Line Number to Delete</label>
-                <input type="number" id="lineNumber" placeholder="Enter line number to delete">
-            </div>
-            <div class="button-group">
-                <button onclick="deleteEmployee()">Delete Employee</button>
-                <button class="delete-all-btn" onclick="deleteAllEmployees()">Delete All Employees</button>
-            </div>
-        </div>
+  <!-- Delete Section -->
+  <div class="form-container">
+    <div>
+      <label for="delemployee">Delete Emp. No:</label>
+      <input id="delemployee" type="number" placeholder="Enter Employee No." />
     </div>
+    <div>
+      <button id="btndelete" class="delete">Delete</button>
+      <button id="btndeleteall" class="delete-all">Delete All</button>
+    </div>
+  </div>
+</div>
 
-    <script src="sp.js"></script>
+<!-- Confirmation Dialogs -->
+<dialog id="dlgConfirmCancel">
+  <form method="dialog">
+    <h4 id="dlgmsg"></h4>
+    <div class="dlgbuttons">
+      <button id="btnConfirm" value="confirm">Confirm</button>
+      <button id="btnCancel" value="cancel">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlgAreYouSure">
+  <form method="dialog">
+    <h4 id="dlgmsg2"></h4>
+    <div class="dlgbuttons">
+      <button id="btnYes" value="yes">Yes</button>
+      <button id="btnNo" value="no">No</button>
+    </div>
+  </form>
+</dialog>
+
+<script> </script>
 </body>
 </html>
