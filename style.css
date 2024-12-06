@@ -94,6 +94,83 @@ nav {
   }
 }
 
+/* Container Styles */
+.container {
+  width: 90%;
+  max-width: 600px; /* Ensures the container is not too wide on large screens */
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header Styles */
+.container h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input Field Styles */
+.container input[type="number"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.container input[type="number"]:focus {
+  outline: none;
+  border-color: #6a1b9a; /* Focus effect with purple border */
+}
+
+/* Select Dropdown Styles */
+.container select {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container select:hover {
+  background-color: #f0f0f0;
+}
+
+/* Button Styles for Converter (if needed) */
+.container button {
+  padding: 10px 20px;
+  background-color: #6a1b9a;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container button:hover {
+  background-color: #8e24aa;
+  transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container input[type="number"], .container select {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
 /* Hero Section */
 .hero {
   text-align: center;
